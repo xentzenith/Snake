@@ -54,7 +54,6 @@ function update() {
     }
       if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
         snakeBody.push([bonusfoodX, bonusfoodY]);
-         snakeBody.push([bonusfoodX, bonusfoodY]);
         placeOtherFood();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
