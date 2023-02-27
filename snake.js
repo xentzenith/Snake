@@ -57,6 +57,12 @@ function update() {
          snakeBody.push([bonusfoodX, bonusfoodY]);
         placeOtherFood();
     }
+        if (bonusfoodX == foodX && bonusfoodY == foodY) {
+    placeFood();
+    }
+      if (foodX == bonusfoodX && foodY == bonusfoodY) {
+        placeOtherFood();
+    }
 
     for (let i = snakeBody.length-1; i > 0; i--) {
         snakeBody[i] = snakeBody[i-1];
@@ -116,7 +122,4 @@ function placeOtherFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
-      if (bonusfoodX == foodX && bonusfoodY == foodY) {
-        placeOtherFood();
-    }
 }
