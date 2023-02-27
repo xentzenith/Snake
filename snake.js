@@ -29,6 +29,7 @@ window.onload = function() {
     context = board.getContext("2d"); //used for drawing on the board
 
     placeFood();
+    placeOtherFood();
     document.addEventListener("keyup", changeDirection);
     // update();
     setInterval(update, 1000/10); //100 milliseconds
@@ -113,8 +114,8 @@ function placeFood() {
 }
 function placeOtherFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
-    foodX = Math.floor(Math.random() * cols) * blockSize;
-    foodY = Math.floor(Math.random() * rows) * blockSize;
+    bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
+    bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
       if (bonusfoodX == foodX && bonusfoodY == foodY) {
         placeOtherFood();
     }
