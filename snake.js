@@ -55,7 +55,7 @@ function update() {
       if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
         snakeBody.push([bonusfoodX, bonusfoodY]);
          snakeBody.push([bonusfoodX, bonusfoodY]);
-        placeFood();
+        placeOtherFood();
     }
 
     for (let i = snakeBody.length-1; i > 0; i--) {
@@ -82,7 +82,7 @@ function update() {
     for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
             gameOver = true;
-            alert("Game Over");
+            alert("GG");
         }
     }
 }
