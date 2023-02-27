@@ -59,9 +59,7 @@ function update() {
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
-    }
-      if (foodX == bonusfoodX && foodY == bonusfoodY) {
-        placeOtherFood();
+    placeOtherFood();
     }
 
     for (let i = snakeBody.length-1; i > 0; i--) {
