@@ -17,6 +17,8 @@ var snakeBody = [];
 //food
 var foodX;
 var foodY;
+var bonusfoodX;
+var bonusfoodY;
 
 var gameOver = false;
 
@@ -42,9 +44,16 @@ function update() {
 
     context.fillStyle="lime";
     context.fillRect(foodX, foodY, blockSize, blockSize);
+    context.fillStyle="orange";
+    context.fillRect(bonusfoodX, bonusfoodY, blockSize, blockSize);
 
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
+        placeFood();
+    }
+      if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
+        snakeBody.push([bonusfoodX, bonusfoodY]);
+         snakeBody.push([bonusfoodX, bonusfoodY]);
         placeFood();
     }
 
@@ -101,4 +110,12 @@ function placeFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
     foodX = Math.floor(Math.random() * cols) * blockSize;
     foodY = Math.floor(Math.random() * rows) * blockSize;
+}
+function placeOtherFood() {
+    //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
+    foodX = Math.floor(Math.random() * cols) * blockSize;
+    foodY = Math.floor(Math.random() * rows) * blockSize;
+      if (bonusfoodX == foodX && bonusfoodY == foodY) {
+        placeOtherFood();
+    }
 }
