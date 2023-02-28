@@ -3,7 +3,11 @@ var blockSize = 20;
 var rows = 15;
 var cols = 15;
 var board;
-var context; 
+var context;
+//score
+var score = 0;
+//other
+var chance;
 
 //snake head
 var snakeX = blockSize * 5;
@@ -50,10 +54,14 @@ function update() {
 
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
+        score++
+        document.getElementById("score").innerHTML 'Score:' + score;
         placeFood();
     }
       if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
         snakeBody.push([bonusfoodX, bonusfoodY]);
+        score++
+        document.getElementById("score").innerHTML 'Score:' + score;
         placeOtherFood();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
@@ -117,6 +125,11 @@ function placeFood() {
 }
 function placeOtherFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
+    chance = Math.round(Math.random() * 10);
+    if (chance === 10){
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
+    } else { 
+        return placeFood();
+           }
 }
