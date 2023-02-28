@@ -61,7 +61,7 @@ function update() {
       if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
         snakeBody.push([bonusfoodX, bonusfoodY]);
         score++
-        document.getElementById("score").innerHTML 'Score:' + score;
+        document.getElementById("score").innerHTML = 'Score:' + score;
         placeOtherFood();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
