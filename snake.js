@@ -1,7 +1,7 @@
 //board
 var blockSize = 25;
-var rows = 20;
-var cols = 20;
+var rows = 15;
+var cols = 15;
 var board;
 var context; 
 
