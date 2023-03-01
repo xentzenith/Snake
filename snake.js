@@ -43,7 +43,7 @@ function update() {
     if (gameOver) {
         return;
     }
-
+   setInterval(chance = Math.round(Math.random() * 10),1000/10);
     context.fillStyle="black";
     context.fillRect(0, 0, board.width, board.height);
 
@@ -125,7 +125,6 @@ function placeFood() {
 }
 function placeOtherFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
-    chance = Math.round(Math.random() * 10);
     if (chance === 10){
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
