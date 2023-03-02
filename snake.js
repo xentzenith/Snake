@@ -7,7 +7,8 @@ var context;
 //score
 var score = 0;
 //other
-
+function checkForBonusFoodSpawn() {
+        for (let w = 0; w <= 10; w = Math.floor(Math.random() * 10))
 
 //snake head
 var snakeX = blockSize * 5;
@@ -59,8 +60,9 @@ function update() {
       if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
         snakeBody.push([bonusfoodX, bonusfoodY]);
         score++
+        score++
         document.getElementById("score").innerHTML = 'Score:' + score;
-        placeOtherFood();
+    checkForBonusFoodSpawn();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
@@ -87,8 +89,7 @@ function update() {
         gameOver = true;
         alert("Game Over");
     }
-    function checkForBonusFoodSpawn() {
-        for (let w = 0; w =< 10; w = Math.floor(Math.random() * 10)) {
+ {
           placeOtherFood();
         }
             
@@ -130,4 +131,5 @@ function placeOtherFood() {
    
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
+}
 }
