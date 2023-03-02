@@ -8,12 +8,13 @@ var context;
 var score = 0;
 //other
 function checkForBonusFoodSpawn() {
-        for (let w = 0; w <= 10; w = Math.floor(Math.random() * 10))
-
+ for (let w = 0; w <= 10; w = Math.floor(Math.random() * 10)){
+         placeOtherFood();
+}
+}
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
-
 var velocityX = 0;
 var velocityY = 0;
 
