@@ -1,13 +1,13 @@
 //board
 var blockSize = 20;
-var rows = 15;
-var cols = 15;
+var rows = 50;
+var cols = 30;
 var board;
 var context;
 //score
 var score = 0;
 //other
-var chance;
+
 
 //snake head
 var snakeX = blockSize * 5;
@@ -31,9 +31,8 @@ window.onload = function() {
     board.height = rows * blockSize;
     board.width = cols * blockSize;
     context = board.getContext("2d"); //used for drawing on the board
-
+    checkForBonusFoodSpawn();
     placeFood();
-    placeOtherFood();
     document.addEventListener("keyup", changeDirection);
     // update();
     setInterval(update, 1000/10); //100 milliseconds
@@ -43,7 +42,6 @@ function update() {
     if (gameOver) {
         return;
     }
-   setInterval(chance = Math.round(Math.random() * 10),1000/10);
     context.fillStyle="black";
     context.fillRect(0, 0, board.width, board.height);
 
@@ -81,7 +79,7 @@ function update() {
     snakeY += velocityY * blockSize;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
     for (let i = 0; i < snakeBody.length; i++) {
-        context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
+        context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize); 10
     }
 
     //game over conditions
@@ -89,8 +87,12 @@ function update() {
         gameOver = true;
         alert("Game Over");
     }
-
-    for (let i = 0; i < snakeBody.length; i++) {
+    function checkForBonusFoodSpawn() {
+        for (let w = 0; w =< 10; w = Math.floor(Math.random() * 10)) {
+          placeOtherFood();
+        }
+            
+          for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
             gameOver = true;
             alert("GG");
@@ -125,10 +127,7 @@ function placeFood() {
 }
 function placeOtherFood() {
     //(0-1) * cols -> (0-19.9999) -> (0-19) * 25
-    if (chance === 10){
+   
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
-    } else { 
-        return placeFood();
-           }
 }
