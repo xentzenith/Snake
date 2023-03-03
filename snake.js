@@ -10,6 +10,7 @@ var score = 0;
 function checkForBonusFoodSpawn() {
  for (let w = 0; w <= 10; w = Math.floor(Math.random() * 10)){
          placeOtherFood();
+         wait(5000);
 }
 }
 
