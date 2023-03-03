@@ -12,6 +12,7 @@ function checkForBonusFoodSpawn() {
          placeOtherFood();
 }
 }
+
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
@@ -132,5 +133,4 @@ function placeOtherFood() {
    
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
-}
 }
