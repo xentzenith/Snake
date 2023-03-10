@@ -7,13 +7,6 @@ var context;
 //score
 var score = 0;
 //other
-function checkForBonusFoodSpawn() {
- for (let w = 0; w <= 10; w = Math.floor(Math.random() * 10)){
-         placeOtherFood();
-         
-}
-}
-
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
@@ -35,7 +28,6 @@ window.onload = function() {
     board.height = rows * blockSize;
     board.width = cols * blockSize;
     context = board.getContext("2d"); //used for drawing on the board
-    checkForBonusFoodSpawn();
     placeFood();
     document.addEventListener("keyup", changeDirection);
     // update();
@@ -65,7 +57,7 @@ function update() {
         score++
         score++
         document.getElementById("score").innerHTML = 'Score:' + score;
-    checkForBonusFoodSpawn();
+    placeOtherFood();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
