@@ -7,6 +7,8 @@ var context;
 //score
 var score = 0;
 //other
+var poisonX;
+var poisonY;
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
@@ -30,6 +32,7 @@ window.onload = function() {
     context = board.getContext("2d"); //used for drawing on the board
     placeFood();
     placeOtherFood();
+    placePoison();
     document.addEventListener("keyup", changeDirection);
     // update();
     setInterval(update, 1000/10); //100 milliseconds
@@ -41,11 +44,13 @@ function update() {
     }
     context.fillStyle="black";
     context.fillRect(0, 0, board.width, board.height);
-
+    
     context.fillStyle="lime";
     context.fillRect(foodX, foodY, blockSize, blockSize);
     context.fillStyle="orange";
     context.fillRect(bonusfoodX, bonusfoodY, blockSize, blockSize);
+    context.fillStyle="purple";
+    context.fillRect(poisonX, poisonY, blockSize, blockSize);
 
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
@@ -60,11 +65,29 @@ function update() {
         document.getElementById("score").innerHTML = 'Score:' + score;
     placeOtherFood();
     }
+          if (snakeX == poisonX && snakeY == poisonY) {
+        snakeBody.pop([poisonX, poisonY]);
+        score--
+        document.getElementById("score").innerHTML = 'Score:' - score;
+    placePoison();
+    }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
     placeOtherFood();
     }
-
+    if (bonusfoodX == poisonX && bonusfoodY == poisonY) {
+    placePoison();
+    placeOtherFood();
+    }
+    if (foodX == poisonX && foodY == poisonY) {
+    placePoison();
+    placeFood();
+    }
+    if (bonusfoodX == poisonX && bonusfoodY == poisonY && foodX == poisonX && foodY == poisonY) {
+    placePoison();
+    placeOtherFood();
+    placeFood();
+    }
     for (let i = snakeBody.length-1; i > 0; i--) {
         snakeBody[i] = snakeBody[i-1];
     }
@@ -124,4 +147,8 @@ function placeOtherFood() {
    
     bonusfoodX = Math.floor(Math.random() * cols) * blockSize;
     bonusfoodY = Math.floor(Math.random() * rows) * blockSize;
+}
+function placePoison() {
+poisonX = Math.floor(Math.random() * cols) * blockSize;
+poisonY = Math.floor(Math.random() * rows) * blockSize;  
 }
