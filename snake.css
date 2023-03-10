@@ -2,3 +2,5 @@ body {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
+background: rgb(124,69,42);
+background: linear-gradient(90deg, rgba(124,69,42,1) 11%, rgba(26,117,194,1) 44%, rgba(0,255,192,1) 76%, rgba(255,0,0,1) 96%);
