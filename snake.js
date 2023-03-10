@@ -68,7 +68,7 @@ function update() {
           if (snakeX == poisonX && snakeY == poisonY) {
         snakeBody.pop([poisonX, poisonY]);
         score--
-        document.getElementById("score").innerHTML = 'Score:' - score;
+        document.getElementById("score").innerHTML = 'Score:' + score;
     placePoison();
     }
         if (bonusfoodX == foodX && bonusfoodY == foodY) {
