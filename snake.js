@@ -29,6 +29,7 @@ window.onload = function() {
     board.width = cols * blockSize;
     context = board.getContext("2d"); //used for drawing on the board
     placeFood();
+    placeOtherFood();
     document.addEventListener("keyup", changeDirection);
     // update();
     setInterval(update, 1000/10); //100 milliseconds
@@ -84,9 +85,6 @@ function update() {
         gameOver = true;
         alert("Game Over");
     }
- {
-          placeOtherFood();
-        }
             
           for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
