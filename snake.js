@@ -90,7 +90,7 @@ function update() {
   }
   if (snakeX == deathX && snakeY == deathY) {
   gameOver = true;
-  alert("Try not to touch the obstacle.")
+  alert("Try not to touch the obstacles.")
   }
   if (bonusfoodX == poisonX && bonusfoodY == poisonY && foodX == poisonX && foodY == poisonY) {
     placePoison();
