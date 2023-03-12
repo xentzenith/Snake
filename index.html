@@ -1,17 +1,34 @@
-
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport", content="width=device-width, initial-scale=1.0">
-        <title>Snake</title>
-        <link rel="stylesheet" href="snake.css">
-        <script src="snake.js"></script>
-    </head>
 
-    <body>
-        <h1>Snake Thing</h1>
-        <p id="score">Score:</p>
-        <canvas id="board"></canvas>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" ,="" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" href="snake.css">
+    <script src="snake.js"></script>
+  </head>
+
+  <body>
+    <div class="thing1">
+    <h1>Snake Thing</h1>
+    <p id="score">Score:0</p>
+    <button class="bruh" onclick="restart()">
+    Play Again
+    </button>
+    </div>
+    <canvas id="board" height="700" width="600"></canvas>
+<script>
+function restart(){
+if(gameOver === true){
+location.reload
+} else {
+alert("Really?")
+}
+}
+</script>
+
+
+  </body>
+  <div id="vimeo-record-extension"></div>
+
 </html>
