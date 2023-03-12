@@ -1,6 +1,27 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
- background: rgb(49,37,164);
-background: radial-gradient(circle, rgba(49,37,164,1) 50%, rgba(0,212,255,1) 100%);
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  background: rgb(49, 37, 164);
+  background: radial-gradient(circle, rgba(49, 37, 164, 1) 50%, rgba(0, 212, 255, 1) 100%);
 }
+.thing1 {
+  border: 5px outset cyan;
+ background-color: blue;
+ text-align: center;
+  }
+  .bruh {
+  background-color: purple;
+  border: 12px;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  transition-duration: 0.4s;
+}
+.bruh:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
