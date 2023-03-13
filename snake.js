@@ -37,14 +37,24 @@ window.onload = function() {
   placePoison();
   setInterval(placeObstacle, 1000);
   document.addEventListener("keyup", changeDirection);
-  // update();
-  setInterval(update, 1000 / 10); //100 milliseconds
+  setInterval(update, 1000 / 10)
+  setInterval(updateButtons, 1000 / 100);
 }
-
+function updateButtons(){
+  if (gameOver === false){
+document.getElementById("whar").style.display = 'none';
+} else {
+document.getElementById("whar").style.display = 'inline';
+}
+}
 function update() {
   if (gameOver) {
     return;
   }
+  
+  
+  
+  
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
 
