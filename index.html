@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" ,="" content="width=device-width, initial-scale=1.0">
+     <meta name="application-name" content="Snake thingy">
+    <meta name="description" content="wip snake ""test"" ">
     <title>Snake</title>
     <link rel="stylesheet" href="snake.css">
     <script src="snake.js"></script>
@@ -12,7 +14,7 @@
     <div class="thing1">
     <h1>Snake Thing</h1>
     <p id="score">Score:0</p>
-    <button class="bruh" id="whar" onclick="restart()">
+    <button class="bruh" onclick="restart()">
     Play Again
     </button>
     </div>
@@ -20,10 +22,13 @@
 <script>
 function restart(){
 if(gameOver === true){
-location.reload();
+location.reload
+} else {
+alert("Really?")
 }
 }
 </script>
+
 
   </body>
   <div id="vimeo-record-extension"></div>
