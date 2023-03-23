@@ -79,7 +79,8 @@ document.getElementById("whar").style.display = 'inline';
 function scoreDeath(){
   if (score < 0){
     gameOver = true;
-    alert("Pay attention to your score.")
+    alert("Pay attention to your score.");
+    score = 0;
     return;
   }
 }
