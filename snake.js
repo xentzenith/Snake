@@ -6,11 +6,14 @@ var board;
 var context;
 //score
 var score = 0;
+var mult = 1;
 //other
 var poisonX;
 var poisonY;
 var deathX;
 var deathY;
+var goldX;
+var goldY;
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
@@ -24,28 +27,59 @@ var foodX;
 var foodY;
 var bonusfoodX;
 var bonusfoodY;
-
 var gameOver = false;
 
-window.onload = function() {
+function getHighScore() {
+  // Get Item from LocalStorage or highScore === 0
+  var highScore = localStorage.getItem('highScore') || 0;
+
+  // If the user has more points than the currently stored high score then
+  if (score > highScore) {
+    // Set the high score to the users' current points
+    highScore = parseInt(score);
+    // Store the high score
+    localStorage.setItem('highScore', highScore);
+  }
+
+  // Return the high score
+  return highScore;
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function updateHighScore() {
+  document.getElementById("bestscore").innerHTML = 'Personal Best:' + localStorage.highScore;
+}
+
+  window.onload = function(){
   board = document.getElementById("board");
   board.height = rows * blockSize;
   board.width = cols * blockSize;
   context = board.getContext("2d"); //used for drawing on the board
   placeFood();
-  placeOtherFood();
+  setInterval(placeOtherFood, 1500);
   placePoison();
   setInterval(placeObstacle, 1000);
+  setInterval(placeGold, 2000)
   document.addEventListener("keyup", changeDirection);
   setInterval(update, 1000 / 10)
   setInterval(updateButtons, 1000 / 100);
-}
+  setInterval(getHighScore, 1000/10);
+  setInterval(scoreDeath, 1000/100);
+  }
 function updateButtons(){
   if (gameOver === false){
 document.getElementById("whar").style.display = 'none';
 } else {
 document.getElementById("whar").style.display = 'inline';
 }
+}
+function scoreDeath(){
+  if (score < 0){
+    gameOver = true;
+    alert("Pay attention to your score.")
+  }
 }
 function update() {
   if (gameOver) {
@@ -66,25 +100,40 @@ function update() {
   context.fillRect(poisonX, poisonY, blockSize, blockSize);
     context.fillStyle = "red";
   context.fillRect(deathX, deathY, blockSize, blockSize);
+  context.fillStyle = "gold";
+  context.fillRect(goldX, goldY, blockSize, blockSize);
 
   if (snakeX == foodX && snakeY == foodY) {
     snakeBody.push([foodX, foodY]);
-    score++
+    score = score + 1*mult
     document.getElementById("score").innerHTML = 'Score:' + score;
     placeFood();
   }
   if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
     snakeBody.push([bonusfoodX, bonusfoodY]);
-    score++
-    score++
+    score = score + 1*mult
+    score = score + 1*mult
     document.getElementById("score").innerHTML = 'Score:' + score;
     placeOtherFood();
   }
   if (snakeX == poisonX && snakeY == poisonY) {
     snakeBody.pop([poisonX, poisonY]);
-    score--
+    score = score - 1*mult
     document.getElementById("score").innerHTML = 'Score:' + score;
     placePoison();
+  }
+
+  if (snakeX == goldX && goldY == snakeY) {
+   goldThing();
+  }
+  async function goldThing(){
+    mult = 2;
+    document.getElementById("mult").innerHTML = 'Multiplier:' + mult;
+    placeGold()
+    sleep(10000)
+    .then(() => mult = 1)
+    .then(() => document.getElementById("mult").innerHTML = 'Multiplier:' + mult)
+
   }
   if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
@@ -107,8 +156,20 @@ function update() {
     placeOtherFood();
     placeFood();
   }
+  if (bonusfoodX == poisonX && bonusfoodY == poisonY && foodX == poisonX && foodY == poisonY && deathX == poisonX && deathY == poisonY) {
+    placePoison();
+    placeOtherFood();
+    placeFood();
+    placeObstacle();
+  }
   for (let i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];
+  }
+  if (bonusfoodX == goldX && bonusfoodY == goldY && foodX == goldX && foodY == goldY && deathX == goldX && deathY == goldY && poisonX == goldX && poisonY == goldY) {
+    placePoison();
+    placeOtherFood();
+    placeFood();
+    placeObstacle();
   }
   if (snakeBody.length) {
     snakeBody[0] = [snakeX, snakeY];
@@ -173,4 +234,8 @@ function placePoison() {
 function placeObstacle() {
   deathX = Math.floor(Math.random() * cols) * blockSize;
   deathY = Math.floor(Math.random() * rows) * blockSize;
+}
+function placeGold() {
+  goldX = Math.floor(Math.random() * cols) * blockSize;
+  goldY = Math.floor(Math.random() * rows) * blockSize;
 }
