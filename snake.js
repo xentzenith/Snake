@@ -1,10 +1,10 @@
 //board
 var blockSize = 20;
-var rows = 35;
-var cols = 30;
+var rows = 25;
+var cols = 25;
 var board;
 var context;
-//
+//score
 var score = 0;
 var mult = 1;
 //other
@@ -53,7 +53,6 @@ function updateHighScore() {
 }
 
   window.onload = function(){
-  score = 0;
   board = document.getElementById("board");
   board.height = rows * blockSize;
   board.width = cols * blockSize;
@@ -64,7 +63,7 @@ function updateHighScore() {
   setInterval(placeObstacle, 1000);
   setInterval(placeGold, 2000)
   document.addEventListener("keyup", changeDirection);
-  setInterval(update, 1000 / 10)
+  setInterval(update, 975 / 10)
   setInterval(updateButtons, 1000 / 100);
   setInterval(getHighScore, 1000/10);
   setInterval(scoreDeath, 1000/100);
@@ -79,9 +78,7 @@ document.getElementById("whar").style.display = 'inline';
 function scoreDeath(){
   if (score < 0){
     gameOver = true;
-    alert("Pay attention to your score.");
-    score = 0;
-    return;
+    alert("Pay attention to your score.")
   }
 }
 function update() {
@@ -91,9 +88,7 @@ function update() {
   
   
   
-  if (score <= -1){
-  score = 0;
-  }
+  
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
 
@@ -116,14 +111,14 @@ function update() {
   }
   if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
     snakeBody.push([bonusfoodX, bonusfoodY]);
-    score = score + 1 * mult
-    score = score + 1 * mult
+    score = score + 1*mult
+    score = score + 1*mult
     document.getElementById("score").innerHTML = 'Score:' + score;
     placeOtherFood();
   }
   if (snakeX == poisonX && snakeY == poisonY) {
     snakeBody.pop([poisonX, poisonY]);
-    score = score - 1 * mult
+    score = score - 1*mult
     document.getElementById("score").innerHTML = 'Score:' + score;
     placePoison();
   }
@@ -155,7 +150,6 @@ function update() {
   if (snakeX == deathX && snakeY == deathY) {
   gameOver = true;
   alert("Try not to touch the obstacles.")
-    return;
   }
   if (bonusfoodX == poisonX && bonusfoodY == poisonY && foodX == poisonX && foodY == poisonY) {
     placePoison();
@@ -216,6 +210,18 @@ function changeDirection(e) {
   } else if (e.code == "ArrowRight" && velocityX != -1) {
     velocityX = 1;
     velocityY = 0;
+  } else if (e.code == "KeyS" && velocityY != -1) {
+    velocityX = 0;
+    velocityY = 1;
+  } else if (e.code == "KeyA" && velocityX != 1) {
+    velocityX = -1;
+    velocityY = 0;
+  } else if (e.code == "KeyD" && velocityX != -1) {
+    velocityX = 1;
+    velocityY = 0;
+  } else if (e.code == "KeyW" && velocityY != 1) {
+    velocityX = 0;
+    velocityY = -1;
   }
 }
 
