@@ -79,6 +79,7 @@ function scoreDeath(){
   if (score < 0){
     gameOver = true;
     alert("Pay attention to your score.")
+    score = 0;
   }
 }
 function update() {
