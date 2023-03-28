@@ -1,9 +1,10 @@
 //board
 var blockSize = 20;
-var rows = 25;
-var cols = 25;
+let rows = prompt("Length?", "20");
+let cols = prompt("Width?", "20");;
 var board;
 var context;
+
 //score
 var score = 0;
 var mult = 1;
@@ -14,6 +15,14 @@ var deathX;
 var deathY;
 var goldX;
 var goldY;
+var hp = 3;
+function gE(id){
+  return document.getElementById(id);
+}
+function gEs(cls){
+  return document.getElementsByClassName(cls);
+}
+
 //snake head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
@@ -49,11 +58,13 @@ function sleep(ms) {
 }
 
 function updateHighScore() {
-  document.getElementById("bestscore").innerHTML = 'Personal Best:' + localStorage.highScore;
+  gE("bestscore").innerHTML = 'Personal Best:' + localStorage.highScore;
 }
-
+function updateHP(){
+  gE("hp").innerHTML = 'Health: ' + hp;
+}
   window.onload = function(){
-  board = document.getElementById("board");
+  board = gE("board");
   board.height = rows * blockSize;
   board.width = cols * blockSize;
   context = board.getContext("2d"); //used for drawing on the board
@@ -63,16 +74,18 @@ function updateHighScore() {
   setInterval(placeObstacle, 1000);
   setInterval(placeGold, 2000)
   document.addEventListener("keyup", changeDirection);
-  setInterval(update, 975 / 10)
+  setInterval(update, 1000 / 10)
   setInterval(updateButtons, 1000 / 100);
   setInterval(getHighScore, 1000/10);
+  setInterval(updateHighScore, 1000/10);
   setInterval(scoreDeath, 1000/100);
+  setInterval(updateHP, 1)
   }
 function updateButtons(){
   if (gameOver === false){
-document.getElementById("whar").style.display = 'none';
+gE("whar").style.display = 'none';
 } else {
-document.getElementById("whar").style.display = 'inline';
+gE("whar").style.display = 'inline';
 }
 }
 function scoreDeath(){
@@ -89,7 +102,11 @@ function update() {
   
   
   
-  
+  if (hp <= 0){
+    gameOver = true;
+    hp = 3;
+    alert("Watch your lives.")
+  };
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
 
@@ -107,20 +124,20 @@ function update() {
   if (snakeX == foodX && snakeY == foodY) {
     snakeBody.push([foodX, foodY]);
     score = score + 1*mult
-    document.getElementById("score").innerHTML = 'Score:' + score;
+    gE("score").innerHTML = 'Score:' + score;
     placeFood();
   }
   if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
     snakeBody.push([bonusfoodX, bonusfoodY]);
     score = score + 1*mult
     score = score + 1*mult
-    document.getElementById("score").innerHTML = 'Score:' + score;
+    gE("score").innerHTML = 'Score:' + score;
     placeOtherFood();
   }
   if (snakeX == poisonX && snakeY == poisonY) {
     snakeBody.pop([poisonX, poisonY]);
     score = score - 1*mult
-    document.getElementById("score").innerHTML = 'Score:' + score;
+    gE("score").innerHTML = 'Score:' + score;
     placePoison();
   }
 
@@ -129,11 +146,11 @@ function update() {
   }
   async function goldThing(){
     mult = 2;
-    document.getElementById("mult").innerHTML = 'Multiplier:' + mult;
+    gE("mult").innerHTML = 'Multiplier:' + mult;
     placeGold()
     sleep(10000)
     .then(() => mult = 1)
-    .then(() => document.getElementById("mult").innerHTML = 'Multiplier:' + mult)
+    .then(() => gE("mult").innerHTML = 'Multiplier:' + mult)
 
   }
   if (bonusfoodX == foodX && bonusfoodY == foodY) {
@@ -149,8 +166,8 @@ function update() {
     placeFood();
   }
   if (snakeX == deathX && snakeY == deathY) {
-  gameOver = true;
-  alert("Try not to touch the obstacles.")
+  hp = hp - 1;
+  
   }
   if (bonusfoodX == poisonX && bonusfoodY == poisonY && foodX == poisonX && foodY == poisonY) {
     placePoison();
@@ -186,14 +203,20 @@ function update() {
 
   //game over conditions
   if (snakeX < 0 || snakeX > cols * blockSize || snakeY < 0 || snakeY > rows * blockSize) {
-    gameOver = true;
-    alert("GG");
+    hp = hp - 1;
+    snakeY = 32;
+    snakeX = 32;
+    velocityX = 0;
+    velocityY = 0
   }
 
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
-      gameOver = true;
-      alert("GG");
+      hp = hp - 1;
+      snakeX = 32;
+      snakeY = 32;
+      velocityX = 0;
+      velocityY = 0;
     }
   }
 }
