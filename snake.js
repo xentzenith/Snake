@@ -1,7 +1,7 @@
 //board
 var blockSize = 20;
-let rows = prompt("Length?", "20");
-let cols = prompt("Width?", "20");;
+let rows = prompt("Length?", "30");
+let cols = prompt("Width?", "30");;
 var board;
 var context;
 
@@ -15,12 +15,15 @@ var deathX;
 var deathY;
 var goldX;
 var goldY;
+var hpX;
+var hpY;
 var hp = 3;
+var d = document;
 function gE(id){
-  return document.getElementById(id);
+  return d.getElementById(id);
 }
 function gEs(cls){
-  return document.getElementsByClassName(cls);
+  return d.getElementsByClassName(cls);
 }
 
 //snake head
@@ -73,13 +76,14 @@ function updateHP(){
   placePoison();
   setInterval(placeObstacle, 1000);
   setInterval(placeGold, 2000)
-  document.addEventListener("keyup", changeDirection);
-  setInterval(update, 1000 / 10)
+  d.addEventListener("keyup", changeDirection);
+  setInterval(update, 1000 / 10);
   setInterval(updateButtons, 1000 / 100);
   setInterval(getHighScore, 1000/10);
   setInterval(updateHighScore, 1000/10);
   setInterval(scoreDeath, 1000/100);
-  setInterval(updateHP, 1)
+  setInterval(updateHP, 1);
+  setInterval(placeHP, 1000);
   }
 function updateButtons(){
   if (gameOver === false){
@@ -120,12 +124,19 @@ function update() {
   context.fillRect(deathX, deathY, blockSize, blockSize);
   context.fillStyle = "gold";
   context.fillRect(goldX, goldY, blockSize, blockSize);
-
+  context.fillStyle = "pink";
+  context.fillRect(hpX, hpY, blockSize, blockSize);
+  
   if (snakeX == foodX && snakeY == foodY) {
     snakeBody.push([foodX, foodY]);
     score = score + 1*mult
     gE("score").innerHTML = 'Score:' + score;
     placeFood();
+  }
+  if (snakeX == hpX && snakeY == hpY) {
+    hp = hp + 1*mult
+    gE("hp").innerHTML = 'Health: ' + hp;
+    placeHP();
   }
   if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
     snakeBody.push([bonusfoodX, bonusfoodY]);
@@ -220,7 +231,19 @@ function update() {
     }
   }
 }
-
+function blockChanger() {
+  var i = prompt("Key?","")
+  if (i == "What in the?"){
+    var w = prompt("Block Size?","20");
+    blockSize = w;
+  } else if(i != "What in the?"){
+  alert("Wrong.");
+  blockSize = 20;
+  } else if(i == null){
+    blockSize = 20;
+  }
+  
+}
 function changeDirection(e) {
   if (e.code == "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -246,6 +269,9 @@ function changeDirection(e) {
   } else if (e.code == "KeyW" && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;
+  }
+  else if (e.code == "Space") {
+   blockChanger();
   }
 }
 
@@ -274,4 +300,8 @@ function placeObstacle() {
 function placeGold() {
   goldX = Math.floor(Math.random() * cols) * blockSize;
   goldY = Math.floor(Math.random() * rows) * blockSize;
+}
+function placeHP() {
+  hpX = Math.floor(Math.random() * cols) * blockSize;
+  hpY = Math.floor(Math.random() * rows) * blockSize;
 }
