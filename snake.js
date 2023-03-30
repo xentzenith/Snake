@@ -1,10 +1,9 @@
 //board
 var blockSize = 20;
-let rows = prompt("Length?", "30");
-let cols = prompt("Width?", "30");;
+let rows = 30
+let cols = 30
 var board;
 var context;
-
 //score
 var score = 0;
 var mult = 1;
@@ -224,10 +223,6 @@ function update() {
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
       hp = hp - 1;
-      snakeX = 32;
-      snakeY = 32;
-      velocityX = 0;
-      velocityY = 0;
     }
   }
 }
