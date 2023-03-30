@@ -64,7 +64,7 @@ function updateHighScore() {
   gE("bestscore").innerHTML = 'Personal Best:' + localStorage.highScore;
 }
 function updateHP(){
-  gE("hp").innerHTML = 'Health: ' + hp;
+  gE("health").innerHTML = 'Health: ' + hp;
 }
   window.onload = function(){
   board = gE("board");
