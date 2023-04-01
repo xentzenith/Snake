@@ -1,7 +1,7 @@
 //board
 var blockSize = 20;
-let rows = 30
-let cols = 30
+let rows = 30;
+let cols = 30;
 var board;
 var context;
 //score
@@ -14,8 +14,11 @@ var deathX;
 var deathY;
 var goldX;
 var goldY;
+var copX;
+var copY;
 var hpX;
 var hpY;
+var h = 1000;
 var hp = 3;
 var d = document;
 function gE(id){
@@ -71,12 +74,13 @@ function updateHP(){
   board.width = cols * blockSize;
   context = board.getContext("2d"); //used for drawing on the board
   placeFood();
+  placeCopper();
   setInterval(placeOtherFood, 1500);
   placePoison();
   setInterval(placeObstacle, 1000);
-  setInterval(placeGold, 2000)
+  setInterval(placeGold, 2000);
   d.addEventListener("keyup", changeDirection);
-  setInterval(update, 1000 / 10);
+  setInterval(update, h / 10);
   setInterval(updateButtons, 1000 / 100);
   setInterval(getHighScore, 1000/10);
   setInterval(updateHighScore, 1000/10);
@@ -115,6 +119,8 @@ function update() {
 
   context.fillStyle = "lime";
   context.fillRect(foodX, foodY, blockSize, blockSize);
+  context.fillStyle = "#b87333";
+  context.fillRect(copX, copY, blockSize, blockSize);
   context.fillStyle = "orange";
   context.fillRect(bonusfoodX, bonusfoodY, blockSize, blockSize);
   context.fillStyle = "purple";
@@ -134,7 +140,6 @@ function update() {
   }
   if (snakeX == hpX && snakeY == hpY) {
     hp = hp + 1*mult
-    gE("hp").innerHTML = 'Health: ' + hp;
     placeHP();
   }
   if (snakeX == bonusfoodX && snakeY == bonusfoodY) {
@@ -162,6 +167,15 @@ function update() {
     .then(() => mult = 1)
     .then(() => gE("mult").innerHTML = 'Multiplier:' + mult)
 
+  }
+  if (snakeX == copX && snakeY == copY){
+    copperThing()
+  }
+  async function copperThing(){
+    h = 800;
+    placeCopper()
+    sleep(7500)
+    .then(() => h = 1000)
   }
   if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
@@ -214,14 +228,17 @@ function update() {
   //game over conditions
   if (snakeX < 0 || snakeX > cols * blockSize || snakeY < 0 || snakeY > rows * blockSize) {
     hp = hp - 1;
-    snakeY = 32;
-    snakeX = 32;
+    snakeY = 40;
+    snakeX = 40;
     velocityX = 0;
     velocityY = 0
   }
 
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
+      while(snakeBody.length > 1){
+      snakeBody.pop(snakeBody.length)
+    }
       hp = hp - 1;
     }
   }
@@ -299,4 +316,8 @@ function placeGold() {
 function placeHP() {
   hpX = Math.floor(Math.random() * cols) * blockSize;
   hpY = Math.floor(Math.random() * rows) * blockSize;
+}
+function placeCopper() {
+  copX = Math.floor(Math.random() * cols) * blockSize;
+  copY = Math.floor(Math.random() * rows) * blockSize;
 }
