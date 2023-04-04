@@ -1,0 +1,6 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background: rgb(49, 37, 164);
+    background: radial-gradient(circle, rgb(255, 0, 0) 50%, rgb(153, 27, 27) 100%);
+  }

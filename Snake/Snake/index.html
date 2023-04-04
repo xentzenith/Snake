@@ -1,0 +1,57 @@
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" ,="" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.gif" type="image/gif"/>
+     <meta name="application-name" content="Snake thingy">
+    <meta name="description" content="wip snake test-ish">
+    <title>Snake</title>
+    <link rel="stylesheet" href="snake.css">
+    <script src="snake.js"></script>
+  </head>
+  <body>
+    <div class="thing1" class="hidden">
+    <h1>Snake Thing</h1>
+    <p id="score">Score:0</p>
+    <p id="health">Health: 3</p>
+    <p id="bestscore" class="extra">Personal Best:0</p>
+    <p id="mult" class="extra">Multiplier:1</p>
+    <button class="bruh" id="whar" onclick="restart()">
+    Play Again
+    </button>
+    <button class="cl" onclick="window.location.href='https://saith23.github.io/Snake/changelog.html'">
+      Changelog
+      </button>
+      <button onclick="extraInfo()" class="info">More Info</button>
+    </div>
+    <canvas id="board" height="700" width="600"></canvas>
+<script>
+function restart(){
+location.reload();
+}
+
+</script>
+<script>
+
+</script>
+<script>
+function extraInfo() {
+
+document.querySelectorAll(".extra").forEach(x => {
+
+  if(x.style.display == "block" || x.style.display == "inline-block") {
+    x.style.display = "none"
+  }
+  else {
+    x.style.display = "block"
+  }
+
+})
+}
+  </script>
+
+  </body>
+  <div id="vimeo-record-extension"></div>
+
+</html>
