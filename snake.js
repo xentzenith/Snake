@@ -18,7 +18,6 @@ var copX;
 var copY;
 var hpX;
 var hpY;
-var h = 1000;
 var hp = 3;
 var d = document;
 function gE(id){
@@ -74,13 +73,13 @@ function updateHP(){
   board.width = cols * blockSize;
   context = board.getContext("2d"); //used for drawing on the board
   placeFood();
-  placeCopper();
+  setInterval(placeCopper, 10000 / 15)
   setInterval(placeOtherFood, 1500);
   placePoison();
   setInterval(placeObstacle, 1000);
   setInterval(placeGold, 2000);
   d.addEventListener("keyup", changeDirection);
-  setInterval(update, h / 10);
+  setInterval(update, 1000 / 10);
   setInterval(updateButtons, 1000 / 100);
   setInterval(getHighScore, 1000/10);
   setInterval(updateHighScore, 1000/10);
@@ -155,7 +154,10 @@ function update() {
     gE("score").innerHTML = 'Score:' + score;
     placePoison();
   }
-
+if (copX == snakeX && snakeY == copY){
+score = score + 50 / mult;
+placeCopper()
+}
   if (snakeX == goldX && goldY == snakeY) {
    goldThing();
   }
@@ -167,15 +169,6 @@ function update() {
     .then(() => mult = 1)
     .then(() => gE("mult").innerHTML = 'Multiplier:' + mult)
 
-  }
-  if (snakeX == copX && snakeY == copY){
-    copperThing()
-  }
-  async function copperThing(){
-    h = 800;
-    placeCopper()
-    sleep(7500)
-    .then(() => h = 1000)
   }
   if (bonusfoodX == foodX && bonusfoodY == foodY) {
     placeFood();
