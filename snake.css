@@ -2,18 +2,44 @@ body {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     background: rgb(49, 37, 164);
-    background: radial-gradient(circle, rgb(0, 89, 255) 50%, rgba(0, 212, 255, 1) 100%);
+    background: radial-gradient(circle, rgba(49, 37, 164, 1) 50%, rgba(0, 212, 255, 1) 100%);
   }
   .thing1 {
-    border: 5px outset cyan;
+    border: 12px outset black;
    background-color: blue;
    text-align: center;
+   font-family: 'Courier New', Courier, monoscape;
     }
+#info {
+  background-color: lime;
+  color: red;
+  text-align: center;
+  font-family: 'Courier New', Courier, monoscape;
+  padding: 16px 32px;
+  font-size: 16px;
+  transition-duration: 0.5s
+}
+#info:hover{
+  background-color: hotpink;
+  color: cyan;
+}
+.cl {
+  background-color: #ab0000;
+  color: red;
+  text-align: center;
+  padding: 16px 32px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  transition-duration: 0.6s
+}
+.cl:hover {
+  background-color: red;
+  color: #ab0000;
+}
     .bruh {
     background-color: purple;
-    border: 12px;
     color: white;
-    padding: 10px 32px;
+    padding: 15px 32px;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -22,40 +48,5 @@ body {
   }
   .bruh:hover {
     background-color: #4CAF50;
-    color: rgb(112, 0, 0);
+    color: white;
   }
-  .cl {
-    background-color: rgb(0, 132, 255);
-    border: 12px;
-    color: rgb(200, 255, 0);
-    padding: 10px 32px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
-    transition-duration: 0.4s;
-  }
-  .cl:hover {
-    background-color: #ff0000;
-    color: rgb(0, 0, 0);
-  }
-  .hidden {
-    display: none; }
-
-    .extra {
-      display: none;
-    }
-    .info{
-      background-color: rgb(95, 255, 27);
-      border: 12px;
-      color: rgb(32, 0, 164);
-      padding: 10px 32px;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      font-family: 'Courier New', Courier, monospace;
-      transition-duration: 1s;
-    }
-    .info:hover{
-      background-color: #f2C9C4
-    }
