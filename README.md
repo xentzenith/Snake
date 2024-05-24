@@ -5,9 +5,16 @@
 The foundation of this code was laid by @saith23.
 
 <!-- CONTRIBUTORS:START -->
-- ![avatar](https://avatars.githubusercontent.com/u/147162734?v=4) **İlker Öztürk**: 1168 lines
-- ![avatar](https://avatars.githubusercontent.com/u/122172197?v=4) **Saith**: 2609 lines
-- ![avatar](https://avatars.githubusercontent.com/u/122172197?v=4) **Saith23**: 543 lines
+<table>
+  <tr>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/147162734?v=4" width="50" height="50" /><br />**İlker Öztürk**<br />1220 lines</td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/in/15368?v=4" width="50" height="50" /><br />**github-actions[bot]**<br />3 lines</td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**Saith**<br />2609 lines</td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**Saith23**<br />543 lines</td>
+  </tr>
+  <tr>
+  </tr>
+</table>
 <!-- CONTRIBUTORS:END -->
 
 @xentzenith forked this project to develop it. ---> 23 May 2024 10:22 -5 EST
