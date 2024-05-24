@@ -8,7 +8,7 @@ The foundation of this code was laid by @saith23.
 <table>
   <tr>
     <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**@Saith23**<br />478 lines</td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/147162734?v=4" width="50" height="50" /><br />**@xentzenith**<br />411 lines</td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/147162734?v=4" width="50" height="50" /><br />**@xentzenith**<br />432 lines</td>
   </tr>
 </table>
 <!-- CONTRIBUTORS:END -->
