@@ -4,7 +4,10 @@
 
 The foundation of this code was laid by @saith23.
 
-I have forked this project to develop it. ---> 23 May 2024 10:22 -5 EST
+<!-- CONTRIBUTORS:START -->
+<!-- CONTRIBUTORS:END -->
+
+@xentzenith forked this project to develop it. ---> 23 May 2024 10:22 -5 EST
 
 ## New Features Added in v1.0.7 by @xentzenith
 1. **Score Display:** 
