@@ -1,6 +1,5 @@
 import requests
 import json
-from github import Github
 import os
 
 # Fetch commit data from the GitHub API
@@ -11,6 +10,9 @@ def fetch_commits(repo, token):
 
     while commits_url:
         response = requests.get(commits_url, headers=headers)
+        if response.status_code != 200:
+            print(f"Failed to fetch commits: {response.status_code}")
+            break
         response_data = response.json()
         commits.extend(response_data)
         if 'next' in response.links:
@@ -24,10 +26,13 @@ def fetch_commits(repo, token):
 def fetch_commit_stats(commit_url, token):
     headers = {'Authorization': f'token {token}'}
     response = requests.get(commit_url, headers=headers)
+    if response.status_code != 200:
+        print(f"Failed to fetch commit stats: {response.status_code} for {commit_url}")
+        return 0
     return response.json().get('stats', {'total': 0})['total']
 
 # Calculate contributions
-def calculate_contributions(commits, repo, token):
+def calculate_contributions(commits, token):
     contributors = {}
 
     for commit in commits:
@@ -85,7 +90,7 @@ def main():
     token = os.getenv('PERSONAL_ACCESS_TOKEN')
 
     commits = fetch_commits(repo, token)
-    contributors = calculate_contributions(commits, repo, token)
+    contributors = calculate_contributions(commits, token)
     update_readme(contributors)
 
 if __name__ == "__main__":
