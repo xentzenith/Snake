@@ -31,19 +31,24 @@ def calculate_contributions(commits, repo, token):
     contributors = {}
 
     for commit in commits:
-        author = commit['commit']['author']['name']
-        if commit['author']:
-            avatar_url = commit['author']['avatar_url']
-        else:
-            avatar_url = "https://github.com/identicons/jasonlong.png"
+        try:
+            author = commit['commit']['author']['name']
+            if commit['author']:
+                avatar_url = commit['author']['avatar_url']
+            else:
+                avatar_url = "https://github.com/identicons/jasonlong.png"
 
-        commit_url = commit['url']
-        lines_changed = fetch_commit_stats(commit_url, token)
+            commit_url = commit['url']
+            lines_changed = fetch_commit_stats(commit_url, token)
 
-        if author not in contributors:
-            contributors[author] = {'lines': 0, 'avatar_url': avatar_url}
+            if author not in contributors:
+                contributors[author] = {'lines': 0, 'avatar_url': avatar_url}
 
-        contributors[author]['lines'] += lines_changed
+            contributors[author]['lines'] += lines_changed
+        except KeyError as e:
+            print(f"KeyError: {e} in commit {commit}")
+        except TypeError as e:
+            print(f"TypeError: {e} in commit {commit}")
 
     return contributors
 
