@@ -60,16 +60,24 @@ def update_readme(contributors):
     end_index = readme_content.index(end_marker)
 
     new_content = readme_content[:start_index]
-    for author, data in contributors.items():
-        new_content.append(f"- ![avatar]({data['avatar_url']}) **{author}**: {data['lines']} lines\n")
+    new_content.append('<table>\n')
+    new_content.append('  <tr>\n')
 
+    count = 0
+    for author, data in contributors.items():
+        new_content.append(f'    <td align="center"><img src="{data["avatar_url"]}" width="50" height="50" /><br />**{author}**<br />{data["lines"]} lines</td>\n')
+        count += 1
+        if count % 4 == 0:
+            new_content.append('  </tr>\n  <tr>\n')
+
+    new_content.append('  </tr>\n</table>\n')
     new_content.extend(readme_content[end_index:])
     with open(readme_path, 'w') as file:
         file.writelines(new_content)
 
 def main():
     repo = os.getenv('GITHUB_REPOSITORY')
-    token = os.getenv('GITHUB_TOKEN')
+    token = os.getenv('PERSONAL_ACCESS_TOKEN')
 
     commits = fetch_commits(repo, token)
     contributors = calculate_contributions(commits, repo, token)
