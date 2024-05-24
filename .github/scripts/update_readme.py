@@ -20,8 +20,14 @@ def fetch_commits(repo, token):
 
     return commits
 
+# Fetch stats for each commit
+def fetch_commit_stats(commit_url, token):
+    headers = {'Authorization': f'token {token}'}
+    response = requests.get(commit_url, headers=headers)
+    return response.json().get('stats', {'total': 0})['total']
+
 # Calculate contributions
-def calculate_contributions(commits):
+def calculate_contributions(commits, repo, token):
     contributors = {}
 
     for commit in commits:
@@ -31,7 +37,8 @@ def calculate_contributions(commits):
         else:
             avatar_url = "https://github.com/identicons/jasonlong.png"
 
-        lines_changed = commit['stats']['total']
+        commit_url = commit['url']
+        lines_changed = fetch_commit_stats(commit_url, token)
 
         if author not in contributors:
             contributors[author] = {'lines': 0, 'avatar_url': avatar_url}
@@ -65,7 +72,7 @@ def main():
     token = os.getenv('GITHUB_TOKEN')
 
     commits = fetch_commits(repo, token)
-    contributors = calculate_contributions(commits)
+    contributors = calculate_contributions(commits, repo, token)
     update_readme(contributors)
 
 if __name__ == "__main__":
