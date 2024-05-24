@@ -15,7 +15,7 @@ The foundation of this code was laid by @saith23.
 
 @xentzenith forked this project to develop it. ---> 23 May 2024 10:22 -5 EST
 
-## New Features Added in v1.0.7 by @xentzenith
+## New Features Added in v2.1.0 by @xentzenith
 1. **Score Display:** 
    - The current score is displayed on the left side of the canvas.
    - The personal best score is shown if it exists.
