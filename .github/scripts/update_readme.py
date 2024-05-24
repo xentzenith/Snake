@@ -76,9 +76,11 @@ def update_readme(contributors):
     new_content.append('<table>\n')
     new_content.append('  <tr>\n')
 
+    sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]['lines'], reverse=True)
+
     count = 0
-    for username, data in contributors.items():
-        new_content.append(f'    <td align="center"><img src="{data["avatar_url"]}" width="50" height="50" /><br />**{username}**<br />{data["lines"]} lines</td>\n')
+    for username, data in sorted_contributors:
+        new_content.append(f'    <td align="center"><img src="{data["avatar_url"]}" width="50" height="50" /><br />**@{username}**<br />{data["lines"]} lines</td>\n')
         count += 1
         if count % 4 == 0:
             new_content.append('  </tr>\n  <tr>\n')
