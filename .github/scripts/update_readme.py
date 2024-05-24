@@ -37,19 +37,20 @@ def calculate_contributions(commits, token):
 
     for commit in commits:
         try:
-            author = commit['commit']['author']['name']
-            if commit['author']:
-                avatar_url = commit['author']['avatar_url']
-            else:
-                avatar_url = "https://github.com/identicons/jasonlong.png"
+            if not commit['author']:
+                continue
+            username = commit['author']['login']
+            if username == 'github-actions[bot]':
+                continue
 
+            avatar_url = commit['author']['avatar_url']
             commit_url = commit['url']
             lines_changed = fetch_commit_stats(commit_url, token)
 
-            if author not in contributors:
-                contributors[author] = {'lines': 0, 'avatar_url': avatar_url}
+            if username not in contributors:
+                contributors[username] = {'lines': 0, 'avatar_url': avatar_url}
 
-            contributors[author]['lines'] += lines_changed
+            contributors[username]['lines'] += lines_changed
         except KeyError as e:
             print(f"KeyError: {e} in commit {commit}")
         except TypeError as e:
@@ -74,8 +75,8 @@ def update_readme(contributors):
     new_content.append('  <tr>\n')
 
     count = 0
-    for author, data in contributors.items():
-        new_content.append(f'    <td align="center"><img src="{data["avatar_url"]}" width="50" height="50" /><br />**{author}**<br />{data["lines"]} lines</td>\n')
+    for username, data in contributors.items():
+        new_content.append(f'    <td align="center"><img src="{data["avatar_url"]}" width="50" height="50" /><br />**{username}**<br />{data["lines"]} lines</td>\n')
         count += 1
         if count % 4 == 0:
             new_content.append('  </tr>\n  <tr>\n')
