@@ -28,8 +28,9 @@ def fetch_commit_stats(commit_url, token):
     response = requests.get(commit_url, headers=headers)
     if response.status_code != 200:
         print(f"Failed to fetch commit stats: {response.status_code} for {commit_url}")
-        return 0
-    return response.json().get('stats', {'total': 0})['total']
+        return 0, 0  # return additions and deletions as 0 if failed
+    stats = response.json().get('stats', {'additions': 0, 'deletions': 0})
+    return stats['additions'], stats['deletions']
 
 # Calculate contributions
 def calculate_contributions(commits, token):
@@ -45,12 +46,13 @@ def calculate_contributions(commits, token):
 
             avatar_url = commit['author']['avatar_url']
             commit_url = commit['url']
-            lines_changed = fetch_commit_stats(commit_url, token)
+            additions, deletions = fetch_commit_stats(commit_url, token)
+            net_lines_changed = additions - deletions
 
             if username not in contributors:
                 contributors[username] = {'lines': 0, 'avatar_url': avatar_url}
 
-            contributors[username]['lines'] += lines_changed
+            contributors[username]['lines'] += net_lines_changed
         except KeyError as e:
             print(f"KeyError: {e} in commit {commit}")
         except TypeError as e:
