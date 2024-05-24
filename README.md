@@ -5,6 +5,9 @@
 The foundation of this code was laid by @saith23.
 
 <!-- CONTRIBUTORS:START -->
+- ![avatar](https://avatars.githubusercontent.com/u/147162734?v=4) **İlker Öztürk**: 1168 lines
+- ![avatar](https://avatars.githubusercontent.com/u/122172197?v=4) **Saith**: 2609 lines
+- ![avatar](https://avatars.githubusercontent.com/u/122172197?v=4) **Saith23**: 543 lines
 <!-- CONTRIBUTORS:END -->
 
 @xentzenith forked this project to develop it. ---> 23 May 2024 10:22 -5 EST
