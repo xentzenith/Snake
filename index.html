@@ -1,57 +1,64 @@
-<html>
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" ,="" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="favicon.gif" type="image/gif"/>
-     <meta name="application-name" content="Snake thingy">
-    <meta name="description" content="wip snake test-ish">
-    <title>Snake</title>
-    <link rel="stylesheet" href="snake.css">
-    <script src="snake.js"></script>
-  </head>
-  <body>
-    <div class="thing1" class="hidden">
-    <h1>Snake Thing</h1>
-    <p id="score">Score:0</p>
-    <p id="health">Health: 3</p>
-    <p id="bestscore" class="extra">Personal Best:0</p>
-    <p id="mult" class="extra">Multiplier:1</p>
-    <button class="bruh" id="whar" onclick="restart()">
-    Play Again
-    </button>
-    <button class="cl" onclick="window.location.href='https://saith23.github.io/Snake/changelog.html'">
-      Changelog
-      </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.gif" type="image/gif"/>
+  <meta name="application-name" content="Snake thingy">
+  <meta name="description" content="wip snake test-ish">
+  <title>Snake</title>
+  <link rel="stylesheet" href="snake.css">
+  <script src="snake.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>Snake Thing</h1>
+      <p id="score">Score: 0</p>
+      <p id="health">Health: 3</p>
+      <p id="bestscore" class="extra" style="display: none;">Personal Best: 0</p>
+      <p id="mult" class="extra">Multiplier: 1</p>
+      <button class="bruh" id="whar" onclick="restart()">Play Again</button>
+      <button class="cl" onclick="window.location.href='https://saith23.github.io/Snake/changelog.html'">Changelog</button>
       <button onclick="extraInfo()" class="info">More Info</button>
+      <div id="attempts">
+        <h2>Latest Attempts</h2>
+        <p id="waiting">Waiting for attempts</p>
+        <ul id="attemptList"></ul>
+      </div>
     </div>
     <canvas id="board" height="700" width="600"></canvas>
-<script>
-function restart(){
-location.reload();
-}
-
-</script>
-<script>
-
-</script>
-<script>
-function extraInfo() {
-
-document.querySelectorAll(".extra").forEach(x => {
-
-  if(x.style.display == "block" || x.style.display == "inline-block") {
-    x.style.display = "none"
-  }
-  else {
-    x.style.display = "block"
-  }
-
-})
-}
-  </script>
-
-  </body>
-  <div id="vimeo-record-extension"></div>
-
+    <div class="legend">
+      <h2>Legend</h2>
+      <div class="legend-item">
+        <canvas id="legend-snake" width="20" height="20"></canvas>
+        <span>Snake</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-food" width="20" height="20"></canvas>
+        <span>Food</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-bonusfood" width="20" height="20"></canvas>
+        <span>Bonus Food</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-poison" width="20" height="20"></canvas>
+        <span>Poison</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-death" width="20" height="20"></canvas>
+        <span>Obstacle</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-gold" width="20" height="20"></canvas>
+        <span>Gold</span>
+      </div>
+      <div class="legend-item">
+        <canvas id="legend-hp" width="20" height="20"></canvas>
+        <span>Health</span>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
