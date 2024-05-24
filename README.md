@@ -7,12 +7,8 @@ The foundation of this code was laid by @saith23.
 <!-- CONTRIBUTORS:START -->
 <table>
   <tr>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/147162734?v=4" width="50" height="50" /><br />**İlker Öztürk**<br />1244 lines</td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/in/15368?v=4" width="50" height="50" /><br />**github-actions[bot]**<br />16 lines</td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**Saith**<br />2609 lines</td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**Saith23**<br />543 lines</td>
-  </tr>
-  <tr>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/147162734?v=4" width="50" height="50" /><br />**xentzenith**<br />1269 lines</td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/122172197?v=4" width="50" height="50" /><br />**Saith23**<br />3152 lines</td>
   </tr>
 </table>
 <!-- CONTRIBUTORS:END -->
